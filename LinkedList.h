@@ -1,7 +1,13 @@
+#pragma once
 #include <iostream>
+#include <memory>
+#include <fstream>
+#include <string>
+using namespace std;
 
-struct Node
+class Node
 {
+public:
     int value;
     int priority;
     Node *next;
@@ -17,7 +23,7 @@ private:
 
 public:
     LinkedList();
-
+    LinkedList(const LinkedList &other);
     ~LinkedList();
 
     void insert(int value, int priority);
@@ -27,4 +33,5 @@ public:
     void modify_key(int value, int new_priority);
     int return_size() const;
     void print() const;
+    string save_to_file(string path);
 };

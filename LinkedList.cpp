@@ -1,6 +1,29 @@
 #include "LinkedList.h"
+#include <fstream>
 
-LinkedList::LinkedList() : head(nullptr), size(0) {}
+LinkedList::LinkedList() : head(nullptr) {}
+
+// LinkedList::LinkedList(const LinkedList &other)
+// {
+//     if (!other.head)
+//     {
+//         head = nullptr;
+//         size = 0;
+//         return;
+//     }
+
+//     head = new Node(other.head->value, other.head->priority);
+//     Node *current = head;
+//     Node *nextCurrent = other.head->next;
+
+//     while (nextCurrent)
+//     {
+//         current->next = new Node(nextCurrent->value, nextCurrent->priority);
+//         current = current->next;
+//         nextCurrent = nextCurrent->next;
+//     }
+//     size = other.size;
+// }
 
 LinkedList::~LinkedList()
 {
@@ -31,8 +54,6 @@ void LinkedList::insert(int value, int priority)
         newNode->next = current->next;
         current->next = newNode;
     }
-
-    size++;
 }
 
 int LinkedList::extract_max()
@@ -47,7 +68,6 @@ int LinkedList::extract_max()
     int maxValue = temp->value;
     head = head->next;
     delete temp;
-    size--;
     return maxValue;
 }
 
@@ -88,8 +108,6 @@ void LinkedList::modify_key(int value, int new_priority)
         prev->next = current->next;
     }
 
-    size--;
-
     insert(value, new_priority);
 }
 
@@ -112,4 +130,23 @@ void LinkedList::print() const
         current = current->next;
     }
     std::cout << std::endl;
+}
+
+string LinkedList::save_to_file(string path)
+{
+    int size = return_size();
+    ofstream file(path);
+    if (!file.is_open())
+    {
+        return "Failed to open file.";
+    }
+
+    Node *current = head;
+    while (current != nullptr)
+    {
+        file << current->value << ' ' << current->priority << '\n';
+        current = current->next;
+    }
+    file.close();
+    return "Data saved successfully."; // Komunikat o sukcesie
 }

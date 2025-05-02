@@ -1,27 +1,61 @@
 #include <iostream>
 #include "Timer.h"
 #include "LinkedList.h"
+#include "DataGenerator.h"
 using namespace std;
 int main()
 {
-    LinkedList que;
-    que.insert(10, 2);
-    que.insert(15, 1);
-    que.insert(12, 3);
-    que.insert(20, 1);
-    que.insert(250, 1);
-    que.insert(12, 1);
-    que.insert(50, 1);
-    que.insert(20, 4);
+    LinkedList data;
+    string filename;
+    fill_object(&data, "D:/Programowanie/C++/SD2/DataBase/10.txt");
+    data.print();
+    // int k = 5000;
+    // string folderName = "D:/Programowanie/C++/SD2/DataBase/";
+    // data.save_to_file("D:/Programowanie/C++/SD2/DataBase/DataBase20k.txt");
+    // do
+    // {
+    //     filename = folderName + "/DataBase" + std::to_string(k / 1000) + "k.txt";
+    //     LinkedList data;
+    //     fill_object(&data, k);
+    //     k += 5000;
+    //     data.save_to_file(filename);
+    //     data.~LinkedList();
+    // } while (k <= 100000);
 
-    que.print();
+    // LinkedList que1;
+    // fill_object(&que1, 10);
+    // vector<unique_ptr<LinkedList>> copies = prepare_copies(que1, 10);
+    // cout << "oryginał" << endl;
+    // que1.print();
+    // cout << "pierwsza kopia" << endl;
+    // copies[0]->print();
+    // cout << "druga kopia" << endl;
+    // copies[1]->print();
+    // copies[0]->insert(1, 100);
+    // cout << endl;
+    // cout << "oryginał" << endl;
+    // que1.print();
+    // cout << "pierwsza kopia" << endl;
+    // copies[0]->print();
+    // cout << "druga kopia" << endl;
+    // copies[1]->print();
+    // LinkedList que1;
+    // cout << "obiekt oryginalny" << endl;
+    // que1.insert(1, 1);
+    // que1.insert(3, 3);
+    // que1.insert(2, 2);
+    // que1.print();
+    // cout << endl;
 
-    que.extract_max();
-    que.print();
+    // LinkedList que2(que1);
+    // cout << "obiekt skopiowany" << endl;
+    // que2.print();
+    // cout << endl;
 
-    cout << que.peek() << endl;
-    cout << que.return_size() << endl;
-    ;
-    que.modify_key(12, 10);
-    que.print();
+    // cout << "zmiana obiektu pierwszego" << endl;
+    // que1.insert(4, 4);
+    // que1.print();
+    // cout << endl;
+    // cout << "obiekt skopiowany" << endl;
+    // que2.print();
 }
