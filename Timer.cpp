@@ -9,10 +9,10 @@ Timer::Timer()
 // Funkcja resetująca timer do stanu początkowego
 void Timer::reset()
 {
-    running = false;                                          // Timer nie działa
-    elapsed = chrono::nanoseconds(0);                         // Zresetowany czas na
-    start_time = chrono::high_resolution_clock::time_point(); // Zerowanie punktu startowego
-    stop_time = chrono::high_resolution_clock::time_point();  // Zerowanie punktu końcowego
+    running = false;                                  // Timer nie działa
+    elapsed = 0;                                      // Zresetowany czas na
+    start_time = high_resolution_clock::time_point(); // Zerowanie punktu startowego
+    stop_time = high_resolution_clock::time_point();  // Zerowanie punktu końcowego
 }
 
 // Funkcja rozpoczynająca pomiar czasu
@@ -25,7 +25,7 @@ int Timer::start()
     }
 
     running = true;
-    start_time = chrono::high_resolution_clock::now(); // Zapisujemy aktualny czas jako początek
+    start_time = high_resolution_clock::now(); // Zapisujemy aktualny czas jako początek
     return 0;
 }
 
@@ -38,14 +38,14 @@ int Timer::stop()
         return -1; // Timer nie był uruchomiony
     }
 
-    stop_time = chrono::high_resolution_clock::now();                                   // Zapisujemy aktualny czas jako koniec
-    elapsed += std::chrono::duration_cast<chrono::nanoseconds>(stop_time - start_time); // Dodajemy różnicę czasu do elapsed
-    running = false;                                                                    // Timer przestaje działać
+    stop_time = chrono::high_resolution_clock::now();                              // Zapisujemy aktualny czas jako koniec
+    elapsed += chrono::duration_cast<nanoseconds>(stop_time - start_time).count(); // Dodajemy różnicę czasu do elapsed
+    running = false;                                                               // Timer przestaje działać
     return 0;
 }
 
 // Funkcja zwracająca zmierzony czas w milisekundach
 int Timer::result()
 {
-    return static_cast<int>(elapsed.count());
+    return elapsed;
 }
