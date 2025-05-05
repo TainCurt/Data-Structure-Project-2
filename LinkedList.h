@@ -19,7 +19,6 @@ class LinkedList
 {
 private:
     Node *head;
-    int size;
 
 public:
     LinkedList();
@@ -27,11 +26,12 @@ public:
     ~LinkedList();
 
     void insert(int value, int priority);
-    int extract_max();
-    int peek() const;
+    Node *extract_max();
+    Node *peek();
     bool is_empty() const;
     void modify_key(int value, int new_priority);
-    int return_size() const;
+    int return_size();
+
     void print() const;
     string save_to_file(string path);
 };

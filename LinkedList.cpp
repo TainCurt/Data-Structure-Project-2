@@ -56,30 +56,29 @@ void LinkedList::insert(int value, int priority)
     }
 }
 
-int LinkedList::extract_max()
+Node *LinkedList::extract_max()
 {
     if (is_empty())
     {
-        std::cout << "Queue is empty";
-        return 0;
+        cout << "Queue is empty";
+        return nullptr;
     }
 
     Node *temp = head;
-    int maxValue = temp->value;
     head = head->next;
-    delete temp;
-    return maxValue;
+    temp->next = nullptr;
+    return temp;
 }
 
-int LinkedList::peek() const
+Node *LinkedList::peek()
 {
+    Node *max = head;
     if (is_empty())
     {
-        std::cout << "Queue is empty";
-        return 0;
+        cout << "Queue is empty";
+        return nullptr;
     }
-
-    return head->value;
+    return max;
 }
 
 void LinkedList::modify_key(int value, int new_priority)
@@ -95,7 +94,7 @@ void LinkedList::modify_key(int value, int new_priority)
 
     if (current == nullptr)
     {
-        std::cout << "Element not found";
+        cout << "Element not found";
         return;
     }
 
@@ -111,11 +110,17 @@ void LinkedList::modify_key(int value, int new_priority)
     insert(value, new_priority);
 }
 
-int LinkedList::return_size() const
+int LinkedList::return_size()
 {
-    return size;
+    int size1;
+    Node *current = head;
+    while (current != nullptr)
+    {
+        size1++;
+        current = current->next;
+    }
+    return size1;
 }
-
 bool LinkedList::is_empty() const
 {
     return head == nullptr;
@@ -123,13 +128,13 @@ bool LinkedList::is_empty() const
 void LinkedList::print() const
 {
     Node *current = head;
-    std::cout << "Queue (value:priority): ";
+    cout << "Queue (value:priority): ";
     while (current != nullptr)
     {
-        std::cout << "(" << current->value << ":" << current->priority << ") ";
+        cout << "(" << current->value << ":" << current->priority << ") ";
         current = current->next;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
 string LinkedList::save_to_file(string path)
