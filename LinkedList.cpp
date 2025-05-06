@@ -3,30 +3,29 @@
 
 LinkedList::LinkedList() : head(nullptr) {}
 
-// LinkedList::LinkedList(const LinkedList &other)
-// {
-//     if (!other.head)
-//     {
-//         head = nullptr;
-//         size = 0;
-//         return;
-//     }
+LinkedList::LinkedList(const LinkedList &other)
+{
+    if (!other.head)
+    {
+        head = nullptr;
+        return;
+    }
 
-//     head = new Node(other.head->value, other.head->priority);
-//     Node *current = head;
-//     Node *nextCurrent = other.head->next;
+    head = new Node(other.head->value, other.head->priority);
+    Node *current = head;
+    Node *nextCurrent = other.head->next;
 
-//     while (nextCurrent)
-//     {
-//         current->next = new Node(nextCurrent->value, nextCurrent->priority);
-//         current = current->next;
-//         nextCurrent = nextCurrent->next;
-//     }
-//     size = other.size;
-// }
+    while (nextCurrent)
+    {
+        current->next = new Node(nextCurrent->value, nextCurrent->priority);
+        current = current->next;
+        nextCurrent = nextCurrent->next;
+    }
+}
 
 LinkedList::~LinkedList()
 {
+    cout << "boom" << endl;
     while (head != nullptr)
     {
         Node *temp = head;

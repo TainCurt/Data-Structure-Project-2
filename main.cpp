@@ -6,23 +6,12 @@
 using namespace std;
 int main()
 {
-    BinaryHeap hip;
-    LinkedList lis;
-    fill_object(&lis, "D:/Programowanie/C++/SD2/DataBase/10.txt");
-    fill_object(&hip, "D:/Programowanie/C++/SD2/DataBase/10.txt");
-    lis.print();
-    cout << endl;
-    hip.print();
-    cout << lis.return_size() << "to jest return size 1" << endl;
-
-    cout << endl;
-    lis.modify_key(123, 300);
-    hip.modify_key(123, 180);
-    lis.print();
-    cout << endl;
-    hip.print();
-    hip.peek();
-    lis.peek();
-    lis.extract_max();
-    hip.extract_max();
+    // string folderName = "D:/Programowanie/C++/SD2/DataBase/DataBase100k.txt";
+    // string filename;
+    // int k = 5000;
+    BinaryHeap exampleHeap;
+    Timer timer;
+    vector<string> tab;
+    LinkedList link;
+    vector<unique_ptr<BinaryHeap>> copies = prepare_copies(exampleHeap, 10);
 }

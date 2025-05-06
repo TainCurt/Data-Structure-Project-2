@@ -30,7 +30,7 @@ private:
 
 public:
     BinaryHeap();
-
+    BinaryHeap(const BinaryHeap &other);
     ~BinaryHeap();
 
     void insert(int value, int priority);

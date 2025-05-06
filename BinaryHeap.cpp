@@ -49,9 +49,21 @@ int BinaryHeap::findIndex(int value)
 }
 
 BinaryHeap::BinaryHeap() : heap(nullptr), size(0), capacity(0) {}
+BinaryHeap::BinaryHeap(const BinaryHeap &other)
+{
+    this->size = other.size;
+    this->capacity = other.capacity;
+    this->heap = new Element[capacity];
+
+    for (int i = 0; i < size; ++i)
+    {
+        this->heap[i] = other.heap[i];
+    }
+}
 
 BinaryHeap::~BinaryHeap()
 {
+    cout << "heca" << endl;
     delete[] heap;
 }
 void BinaryHeap::double_size()
