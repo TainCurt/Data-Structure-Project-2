@@ -25,7 +25,7 @@ LinkedList::LinkedList(const LinkedList &other)
 
 LinkedList::~LinkedList()
 {
-    cout << "boom" << endl;
+    // cout << "boom" << endl;
     while (head != nullptr)
     {
         Node *temp = head;

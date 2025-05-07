@@ -63,7 +63,7 @@ BinaryHeap::BinaryHeap(const BinaryHeap &other)
 
 BinaryHeap::~BinaryHeap()
 {
-    cout << "heca" << endl;
+    // cout << "heca" << endl;
     delete[] heap;
 }
 void BinaryHeap::double_size()
@@ -120,7 +120,7 @@ void BinaryHeap::modify_key(int value, int newPriority)
     int index = findIndex(value);
     if (index == -1)
     {
-        cout << "Element nie istnieje!" << endl;
+        cout << "Element is not found!" << endl;
         return;
     }
     int oldPriority = heap[index].priority;
