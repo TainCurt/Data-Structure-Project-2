@@ -25,7 +25,6 @@ LinkedList::LinkedList(const LinkedList &other)
 
 LinkedList::~LinkedList()
 {
-    // cout << "boom" << endl;
     while (head != nullptr)
     {
         Node *temp = head;
@@ -33,11 +32,11 @@ LinkedList::~LinkedList()
         delete temp;
     }
 }
-
+// Wstawia element zgodnie z priorytetem
 void LinkedList::insert(int value, int priority)
 {
     Node *newNode = new Node(value, priority);
-
+    // Wstawiamy na początek, jeśli lista pusta lub priorytet jest najwyższy
     if (head == nullptr || priority > head->priority)
     {
         newNode->next = head;
@@ -45,6 +44,7 @@ void LinkedList::insert(int value, int priority)
     }
     else
     {
+        // Szukamy odpowiedniego miejsca w liście
         Node *current = head;
         while (current->next != nullptr && current->next->priority >= priority)
         {
@@ -55,6 +55,7 @@ void LinkedList::insert(int value, int priority)
     }
 }
 
+// Usuwa i zwraca element z najwyższym priorytetem
 Node *LinkedList::extract_max()
 {
     if (is_empty())
@@ -65,10 +66,11 @@ Node *LinkedList::extract_max()
 
     Node *temp = head;
     head = head->next;
-    temp->next = nullptr;
+    temp->next = nullptr; // odłączamy od listy
     return temp;
 }
 
+// Zwraca element z najwyższym priorytetem
 Node *LinkedList::peek()
 {
     Node *max = head;
@@ -80,6 +82,7 @@ Node *LinkedList::peek()
     return max;
 }
 
+// Zmienia priorytet elementu o podanej wartości
 void LinkedList::modify_key(int value, int new_priority)
 {
     Node *prev = nullptr;
@@ -109,9 +112,10 @@ void LinkedList::modify_key(int value, int new_priority)
     insert(value, new_priority);
 }
 
+// Zwraca liczbę elementów w liście
 int LinkedList::return_size()
 {
-    int size1;
+    int size1 = 0;
     Node *current = head;
     while (current != nullptr)
     {
@@ -120,10 +124,14 @@ int LinkedList::return_size()
     }
     return size1;
 }
+
+// Sprawdza, czy lista jest pusta
 bool LinkedList::is_empty() const
 {
     return head == nullptr;
 }
+
+// Wypisuje zawartość listy
 void LinkedList::print() const
 {
     Node *current = head;
@@ -136,6 +144,7 @@ void LinkedList::print() const
     cout << endl;
 }
 
+// Zapisuje dane do pliku
 string LinkedList::save_to_file(string path)
 {
     int size = return_size();

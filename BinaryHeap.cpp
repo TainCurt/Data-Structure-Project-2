@@ -11,6 +11,7 @@ void BinaryHeap::swap(int i, int j)
     heap[j] = temp;
 }
 
+// Przesuwa element w górę, aby przywrócić własność kopca
 void BinaryHeap::heapifyUp(int index)
 {
     while (index > 0 && heap[parent(index)].priority < heap[index].priority)
@@ -20,6 +21,7 @@ void BinaryHeap::heapifyUp(int index)
     }
 }
 
+// Przesuwa element w dół, aby przywrócić własność kopca
 void BinaryHeap::heapifyDown(int index)
 {
     int largest = index;
@@ -38,6 +40,7 @@ void BinaryHeap::heapifyDown(int index)
     }
 }
 
+// Szuka indeksu elementu o danej wartości
 int BinaryHeap::findIndex(int value)
 {
     for (int i = 0; i < size; ++i)
@@ -45,7 +48,7 @@ int BinaryHeap::findIndex(int value)
         if (heap[i].value == value)
             return i;
     }
-    return -1;
+    return -1; // jeśli nie znaleziono elementu
 }
 
 BinaryHeap::BinaryHeap() : heap(nullptr), size(0), capacity(0) {}
@@ -63,7 +66,6 @@ BinaryHeap::BinaryHeap(const BinaryHeap &other)
 
 BinaryHeap::~BinaryHeap()
 {
-    // cout << "heca" << endl;
     delete[] heap;
 }
 void BinaryHeap::double_size()
@@ -80,6 +82,7 @@ void BinaryHeap::double_size()
     heap = newHeap;
 }
 
+// Dodaje nowy element do kopca
 void BinaryHeap::insert(int value, int priority)
 {
     if (size == capacity)
@@ -91,6 +94,7 @@ void BinaryHeap::insert(int value, int priority)
     size++;
 }
 
+// Usuwa i zwraca element o największym priorytecie
 Element BinaryHeap::extract_max()
 {
     if (is_empty())
@@ -105,6 +109,7 @@ Element BinaryHeap::extract_max()
     return max;
 }
 
+// Zwraca element o największym priorytecie
 Element BinaryHeap::peek()
 {
     if (is_empty())
@@ -115,6 +120,7 @@ Element BinaryHeap::peek()
     return heap[0];
 }
 
+// Zmienia priorytet danego elementu
 void BinaryHeap::modify_key(int value, int newPriority)
 {
     int index = findIndex(value);
@@ -132,16 +138,19 @@ void BinaryHeap::modify_key(int value, int newPriority)
         heapifyDown(index);
 }
 
+// Zwraca liczbę elementów
 int BinaryHeap::return_size()
 {
     return size;
 }
 
+// Sprawdza, czy kopiec jest pusty
 bool BinaryHeap::is_empty()
 {
     return size == 0;
 }
 
+// Wypisuje elementy kopca
 void BinaryHeap::print() const
 {
     cout << "Heap (value:priority): ";
